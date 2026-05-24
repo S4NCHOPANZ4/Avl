@@ -98,10 +98,18 @@ public class AvlTree {
             preOrder(base);
             System.out.println(); 
     }
+    private Node buscarNodo(Node node, int val) {
+        if (node == null) return null;
+        if (val == node.getValue()) return node;
 
+        if (val < node.getValue())
+            return buscarNodo(node.getLeft(), val);
+        else
+            return buscarNodo(node.getRight(), val);
+    }
     public void eliminar(int val) {
         if (buscarNodo(base, val) == null) {
-            System.out.println("El valor " + val + " no existe en el árbol.");
+            System.out.println("El valor " + val + " no existe");
             return;
         }
         base = borrar(base, val);
@@ -112,7 +120,7 @@ public class AvlTree {
 
         Node objetivo = buscarNodo(node, val);
         if (objetivo == null) {
-            System.out.println("El valor " + val + " no existe en el árbol.");
+            System.out.println("El valor " + val + " no existe");
             return node;
         }
 
