@@ -120,7 +120,7 @@ public class AvlTree {
 
         Node objetivo = buscarNodo(node, val);
         if (objetivo == null) {
-            System.out.println("El valor " + val + " no existe");
+            System.out.println("El valor " + val + " no esta por aqui");
             return node;
         }
 
