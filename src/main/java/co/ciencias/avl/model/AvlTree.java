@@ -98,4 +98,57 @@ public class AvlTree {
             preOrder(base);
             System.out.println(); 
     }
+
+    public void eliminar(int val) {
+        if (buscarNodo(base, val) == null) {
+            System.out.println("El valor " + val + " no existe en el árbol.");
+            return;
+        }
+        base = borrar(base, val);
+    }
+        
+    public Node borrar(Node node, int val) {
+        if (node == null) return null;
+
+        Node objetivo = buscarNodo(node, val);
+        if (objetivo == null) {
+            System.out.println("El valor " + val + " no existe en el árbol.");
+            return node;
+        }
+
+        if (val < node.getValue()) {
+            node.setLeft(borrar(node.getLeft(), val));
+        } else if (val > node.getValue()) {
+                node.setRight(borrar(node.getRight(), val));
+        } else {
+            if (node.getLeft() == null) return node.getRight();
+            if (node.getRight() == null) return node.getLeft();
+
+            Node sucesor = node.getRight();
+            while (sucesor.getLeft() != null)
+                sucesor = sucesor.getLeft();
+
+            node.setValue(sucesor.getValue());
+            node.setRight(borrar(node.getRight(), sucesor.getValue()));
+        }
+
+        node.setHeight(1 + Math.max(height(node.getLeft()), height(node.getRight())));
+
+        int balance = balance(node);
+
+        if (balance > 1 && balance(node.getLeft()) >= 0)
+        return rotateRight(node);
+        if (balance > 1 && balance(node.getLeft()) < 0) {
+            node.setLeft(rotateLeft(node.getLeft()));
+            return rotateRight(node);
+        }
+        if (balance < -1 && balance(node.getRight()) <= 0)
+            return rotateLeft(node);
+        if (balance < -1 && balance(node.getRight()) > 0) {
+            node.setRight(rotateRight(node.getRight()));
+            return rotateLeft(node);
+        }
+
+        return node;
+    }
 }
