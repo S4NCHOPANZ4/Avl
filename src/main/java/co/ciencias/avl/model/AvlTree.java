@@ -128,17 +128,7 @@ public class AvlTree {
             node.setLeft(borrar(node.getLeft(), val));
         } else if (val > node.getValue()) {
                 node.setRight(borrar(node.getRight(), val));
-        } else {
-            if (node.getLeft() == null) return node.getRight();
-            if (node.getRight() == null) return node.getLeft();
-
-            Node sucesor = node.getRight();
-            while (sucesor.getLeft() != null)
-                sucesor = sucesor.getLeft();
-
-            node.setValue(sucesor.getValue());
-            node.setRight(borrar(node.getRight(), sucesor.getValue()));
-        }
+        } 
 
         node.setHeight(1 + Math.max(height(node.getLeft()), height(node.getRight())));
 
