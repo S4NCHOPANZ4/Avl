@@ -1,5 +1,7 @@
 co\ciencias\avl\controller\MainApl.class
-co\ciencias\avl\controller\Controller.class
 co\ciencias\avl\model\AvlTree.class
 co\ciencias\avl\model\Node.class
 co\ciencias\avl\view\VistaConsola.class
+co\ciencias\avl\view\VistaGUI.class
+co\ciencias\avl\view\TreePanel.class
+co\ciencias\avl\controller\Controller.class
